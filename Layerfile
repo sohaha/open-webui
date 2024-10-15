@@ -2,6 +2,8 @@
 FROM vm/ubuntu:18.04
 
 SECRET ENV DATABASE_URL
+SECRET ENV OPENAI_API_BASE_URL
+SECRET ENV OPENAI_API_KEY
 
 # To note: Layerfiles create entire VMs, *not* containers!
 
@@ -23,6 +25,6 @@ COPY . .
 
 RUN docker build -t image .
 # RUN docker run -d -p 3000:8080 -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
-RUN docker run -d -p 3000:8080 -e DATABASE_URL=$DATABASE_URL -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
+RUN docker run -d -p 3000:8080 -e OPENAI_API_BASE_URL=$OPENAI_API_BASE_URL -e OPENAI_API_KEY=$OPENAI_API_KEY -e DATABASE_URL=$DATABASE_URL -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
 
 EXPOSE WEBSITE http://localhost:3000
