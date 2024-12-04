@@ -24,7 +24,7 @@ RUN apt-get update && \
 # COPY webui.db /app/backend/data/webui.db
 
 # RUN docker build -t image .
-RUN docker run -d -p 3000:8080 -e OPENAI_API_BASE_URL=$OPENAI_API_BASE_URL -e OPENAI_API_KEY=$OPENAI_API_KEY -e DATABASE_URL=$DATABASE_URL -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+RUN docker run -d -p 3000:8080 -e OPENAI_API_BASE_URL=$OPENAI_API_BASE_URL -e OPENAI_API_KEY=$OPENAI_API_KEY -e DATABASE_URL=$DATABASE_URL -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:git-9b6076f-ollama
 #RUN docker run -d -p 3000:8080 -e OPENAI_API_BASE_URL=$OPENAI_API_BASE_URL -e OPENAI_API_KEY=$OPENAI_API_KEY -e DATABASE_URL=$DATABASE_URL -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:ollama
 
 EXPOSE WEBSITE http://localhost:3000
